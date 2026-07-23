@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wavering Soul — Travel Further, Feel Deeper</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+
+/* ============================= TOKENS ============================= */
+:root{
+  --navy-900:#071b26;
+  --navy-800:#0b2735;
+  --navy-700:#123545;
+  --navy-600:#1b4a5e;
+  --teal-600:#0e9a8d;
+  --teal-500:#17b8a6;
+  --teal-400:#4fd6c4;
+  --teal-100:#e4f7f4;
+  --cream:#f7f4ec;
+  --white:#ffffff;
+  --ink:#0f2a34;
+  --gray-500:#5f7580;
+  --gray-300:#c8d3d5;
+  --coral:#ff7a59;
+  --shadow-sm: 0 2px 10px rgba(7,27,38,0.06);
+  --shadow-md: 0 12px 30px rgba(7,27,38,0.12);
+  --shadow-lg: 0 24px 60px rgba(7,27,38,0.22);
+  --radius-lg: 22px;
+  --radius-md: 16px;
+  --radius-sm: 10px;
+  --wave: "~";
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter', sans-serif;
+  color:var(--ink);
+  background:var(--white);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%; display:block;}
+a{text-decoration:none; color:inherit;}
+ul{list-style:none;}
+button{font-family:inherit; cursor:pointer; border:none; background:none;}
+h1,h2,h3,h4{font-family:'Fraunces', serif; color:var(--navy-900); font-weight:600; line-height:1.15;}
+.section-eyebrow{
+  font-family:'Inter',sans-serif;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  font-size:.72rem;
+  color:var(--teal-600);
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+.section-eyebrow svg{width:16px; height:16px;}
+.container{
+  width:100%;
+  max-width:1240px;
+  margin:0 auto;
+  padding:0 20px;
+}
+.wave-divider{width:100%; height:34px; display:block; color:var(--cream);}
+.wave-divider path{fill:currentColor;}
+
+/* buttons */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  font-weight:700;
+  font-size:.95rem;
+  padding:14px 28px;
+  border-radius:999px;
+  transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+  white-space:nowrap;
+}
+.btn-teal{
+  background:var(--teal-500);
+  color:var(--white);
+  box-shadow:var(--shadow-md);
+}
+.btn-teal:hover{ background:var(--teal-600); transform:translateY(-2px); box-shadow:var(--shadow-lg);}
+.btn-outline{
+  border:1.5px solid var(--teal-500);
+  color:var(--teal-600);
+  background:transparent;
+}
+.btn-outline:hover{background:var(--teal-100); transform:translateY(-2px);}
+
+/* ============================= NAVBAR ============================= */
+.navbar{
+  position:fixed;
+  top:0; left:0; right:0;
+  z-index:1000;
+  background:rgba(7,27,38,0.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  transition:background .3s ease;
+}
+.nav-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  height:76px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.logo-slot{
+  width:44px; height:44px;
+  border-radius:12px;
+  border:1.5px dashed rgba(255,255,255,0.35);
+  display:flex; align-items:center; justify-content:center;
+  font-size:.6rem;
+  color:rgba(255,255,255,0.5);
+  font-weight:700;
+  letter-spacing:.05em;
+  flex-shrink:0;
+  background:rgba(255,255,255,0.03);
+}
+.brand-word{
+  font-family:'Fraunces', serif;
+  font-weight:600;
+  font-size:1.35rem;
+  color:var(--white);
+  letter-spacing:.01em;
+}
+.brand-word span{color:var(--teal-400); font-style:italic;}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:36px;
+}
+.nav-links a:not(.call-btn){
+  color:rgba(255,255,255,0.82);
+  font-weight:600;
+  font-size:.95rem;
+  position:relative;
+  padding:6px 0;
+}
+.nav-links a:not(.call-btn)::after{
+  content:'';
+  position:absolute;
+  left:0; bottom:0;
+  width:0%; height:2px;
+  background:var(--teal-400);
+  transition:width .25s ease;
+}
+.nav-links a:not(.call-btn):hover::after{width:100%;}
+
+.call-btn{
+  background:var(--teal-500);
+  color:var(--white) !important;
+  font-weight:700;
+  padding:11px 22px;
+  border-radius:999px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  box-shadow:0 8px 20px rgba(23,184,166,0.35);
+  transition:transform .25s ease, background .25s ease;
+}
+.call-btn:hover{background:var(--teal-600); transform:translateY(-2px);}
+
+.nav-toggle{
+  display:none;
+  width:40px; height:40px;
+  border-radius:10px;
+  align-items:center;
+  justify-content:center;
+  color:var(--white);
+}
+.nav-toggle svg{width:24px; height:24px;}
+
+/* ============================= MODAL ============================= */
+.modal-overlay{
+  position:fixed; inset:0;
+  background:rgba(7,27,38,0.55);
+  backdrop-filter:blur(6px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:2000;
+  padding:20px;
+  opacity:0;
+  transition:opacity .25s ease;
+}
+.modal-overlay.active{display:flex; opacity:1;}
+.modal-box{
+  background:var(--white);
+  border-radius:24px;
+  width:100%;
+  max-width:880px;
+  max-height:88vh;
+  overflow-y:auto;
+  box-shadow:var(--shadow-lg);
+  display:grid;
+  grid-template-columns:1.3fr 1fr;
+  position:relative;
+  transform:translateY(20px) scale(.97);
+  transition:transform .3s ease;
+}
+.modal-overlay.active .modal-box{transform:translateY(0) scale(1);}
+.modal-close{
+  position:absolute;
+  top:18px; right:18px;
+  width:38px; height:38px;
+  border-radius:50%;
+  background:var(--cream);
+  display:flex; align-items:center; justify-content:center;
+  color:var(--navy-900);
+  z-index:5;
+  transition:background .2s ease, transform .2s ease;
+}
+.modal-close:hover{background:var(--teal-100); transform:rotate(90deg);}
+.modal-close svg{width:18px; height:18px;}
+
+.modal-content{padding:44px 40px;}
+.modal-content h3{font-size:1.6rem; margin-bottom:6px;}
+.modal-sub{color:var(--gray-500); font-size:.92rem; margin-bottom:24px;}
+.modal-primary-numbers{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  background:var(--teal-100);
+  border-radius:16px;
+  padding:16px 18px;
+  margin-bottom:26px;
+}
+.modal-phone-icon{
+  width:46px; height:46px;
+  border-radius:50%;
+  background:var(--teal-500);
+  color:var(--white);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+}
+.modal-phone-icon svg{width:22px; height:22px;}
+.modal-primary-numbers .nums{display:flex; flex-direction:column; gap:4px;}
+.modal-primary-numbers .nums a{font-weight:700; color:var(--navy-900); font-size:1rem;}
+
+.dept-list{border-top:1px solid var(--gray-300);}
+.dept-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:13px 2px;
+  border-bottom:1px solid var(--gray-300);
+  font-size:.92rem;
+}
+.dept-row .label{color:var(--navy-700); font-weight:600;}
+.dept-row .num{color:var(--teal-600); font-weight:700;}
+
+.modal-illustration{
+  background:linear-gradient(160deg, var(--navy-800), var(--teal-600));
+  border-radius:0 24px 24px 0;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+  min-height:340px;
+}
+.modal-illustration svg{width:100%; height:100%; position:relative; z-index:2;}
+
+/* ============================= HERO ============================= */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=1740&auto=format&fit=crop') center/cover no-repeat;
+  padding:140px 20px 80px;
+}
+.hero::before{
+  content:'';
+  position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(7,27,38,0.55) 0%, rgba(7,27,38,0.75) 60%, rgba(7,27,38,0.92) 100%);
+}
+.hero-content{position:relative; z-index:2; max-width:760px;}
+.hero-content .section-eyebrow{color:var(--teal-400); margin-bottom:18px;}
+.hero-content h1{
+  color:var(--white);
+  font-size:clamp(2.4rem, 6vw, 4.2rem);
+  margin-bottom:20px;
+}
+.hero-content h1 em{color:var(--teal-400); font-style:italic;}
+.hero-content p{
+  color:rgba(255,255,255,0.85);
+  font-size:1.1rem;
+  max-width:560px;
+  margin:0 auto 36px;
+}
+.hero-wave{
+  position:absolute;
+  bottom:-2px; left:0; right:0;
+  z-index:2;
+  color:var(--cream);
+  width:100%;
+  height:60px;
+}
+
+/* ============================= SECTIONS GENERAL ============================= */
+section{padding:90px 0;}
+.section-head{
+  text-align:center;
+  max-width:640px;
+  margin:0 auto 50px;
+}
+.section-head h2{font-size:clamp(1.8rem, 4vw, 2.6rem); margin-top:12px;}
+.section-head p{color:var(--gray-500); margin-top:14px; font-size:1rem;}
+
+/* search bar */
+.search-bar{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  max-width:520px;
+  margin:0 auto 44px;
+  background:var(--white);
+  border:1.5px solid var(--gray-300);
+  border-radius:999px;
+  padding:8px 8px 8px 20px;
+  box-shadow:var(--shadow-sm);
+}
+.search-bar input{
+  border:none; outline:none;
+  flex:1;
+  font-family:inherit;
+  font-size:.95rem;
+  color:var(--ink);
+}
+.search-bar button{
+  background:var(--teal-500);
+  color:var(--white);
+  width:42px; height:42px;
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+  transition:background .2s ease;
+}
+.search-bar button:hover{background:var(--teal-600);}
+.search-bar svg{width:18px; height:18px;}
+
+/* ---- destinations carousel ---- */
+.dest-wrap{position:relative;}
+.dest-track{
+  display:flex;
+  gap:24px;
+  overflow-x:auto;
+  scroll-behavior:smooth;
+  padding:8px 4px 24px;
+  scrollbar-width:none;
+}
+.dest-track::-webkit-scrollbar{display:none;}
+.dest-card{
+  flex:0 0 280px;
+  background:var(--white);
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  box-shadow:var(--shadow-sm);
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.dest-card:hover{transform:translateY(-8px); box-shadow:var(--shadow-md);}
+.dest-card img{height:190px; width:100%; object-fit:cover;}
+.dest-card-body{padding:20px;}
+.dest-card-body .tag{
+  font-size:.7rem;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--teal-600);
+}
+.dest-card-body h3{font-size:1.15rem; margin:8px 0 8px;}
+.dest-card-body p{color:var(--gray-500); font-size:.88rem;}
+
+.carousel-arrows{
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  margin-top:6px;
+}
+.arrow-btn{
+  width:46px; height:46px;
+  border-radius:50%;
+  background:var(--white);
+  border:1.5px solid var(--gray-300);
+  display:flex; align-items:center; justify-content:center;
+  color:var(--navy-800);
+  transition:all .2s ease;
+}
+.arrow-btn:hover{background:var(--teal-500); color:var(--white); border-color:var(--teal-500);}
+.arrow-btn svg{width:18px; height:18px;}
+
+/* ---- gallery ---- */
+.gallery-section{background:var(--cream);}
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  grid-auto-rows:140px;
+  gap:14px;
+}
+.gallery-grid img{
+  width:100%; height:100%; object-fit:cover;
+  border-radius:var(--radius-md);
+  box-shadow:var(--shadow-sm);
+  transition:transform .35s ease, filter .35s ease;
+}
+.gallery-grid a{overflow:hidden; border-radius:var(--radius-md); display:block;}
+.gallery-grid a:hover img{transform:scale(1.08);}
+.gallery-grid .g-tall{grid-row:span 2;}
+.view-more-row{text-align:center; margin-top:36px;}
+.view-more-link{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-weight:700;
+  color:var(--teal-600);
+  border-bottom:2px solid var(--teal-500);
+  padding-bottom:3px;
+  transition:gap .2s ease;
+}
+.view-more-link:hover{gap:14px;}
+
+/* ---- articles ---- */
+.articles-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:28px;
+}
+.article-card{
+  background:var(--white);
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  box-shadow:var(--shadow-sm);
+  transition:transform .3s ease, box-shadow .3s ease;
+  display:flex;
+  flex-direction:column;
+}
+.article-card:hover{transform:translateY(-6px); box-shadow:var(--shadow-md);}
+.article-thumb{position:relative; height:190px;}
+.article-thumb img{width:100%; height:100%; object-fit:cover;}
+.date-tag{
+  position:absolute;
+  top:14px; left:14px;
+  background:var(--navy-900);
+  color:var(--white);
+  font-size:.72rem;
+  font-weight:700;
+  padding:6px 12px;
+  border-radius:999px;
+  letter-spacing:.03em;
+}
+.article-body{padding:22px; flex:1; display:flex; flex-direction:column;}
+.article-body h3{font-size:1.1rem; margin-bottom:10px;}
+.article-body p{color:var(--gray-500); font-size:.88rem; flex:1;}
+.article-body .read-link{
+  margin-top:16px;
+  font-weight:700;
+  color:var(--teal-600);
+  font-size:.85rem;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+}
+
+/* ============================= FOOTER ============================= */
+.footer{background:var(--cream); color:var(--navy-800);}
+.footer-band{
+  border-bottom:1px solid rgba(15,42,52,0.1);
+  padding:52px 0;
+}
+.footer-brand-row{
+  text-align:center;
+  padding:60px 0 30px;
+}
+.footer-logo-wrap{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:14px;
+}
+.footer-logo-wrap .logo-slot{
+  width:56px; height:56px;
+  border-color:rgba(15,42,52,0.25);
+  color:rgba(15,42,52,0.4);
+}
+.footer-brand-row .brand-word{color:var(--navy-900); font-size:1.6rem;}
+.footer-brand-row .dev-by{
+  margin-top:6px;
+  font-size:.85rem;
+  color:var(--gray-500);
+}
+
+/* band 1 about */
+.band-about{text-align:center; max-width:720px; margin:0 auto; padding-top:0;}
+.band-about h4.section-eyebrow-label{
+  font-family:'Fraunces', serif;
+  font-size:1.4rem;
+  color:var(--navy-900);
+  margin-bottom:14px;
+  font-weight:600;
+}
+.band-about p{color:var(--gray-500); font-size:.98rem; line-height:1.7;}
+.band-about p strong{color:var(--teal-600); font-weight:700; cursor:pointer;}
+
+/* band 2 contact strip */
+.contact-strip{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:30px;
+}
+.contact-item{display:flex; gap:14px; align-items:flex-start;}
+.contact-icon{
+  width:42px; height:42px;
+  border-radius:12px;
+  background:var(--teal-100);
+  color:var(--teal-600);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+}
+.contact-icon svg{width:20px; height:20px;}
+.contact-item .ct-text{font-size:.88rem; color:var(--navy-700); line-height:1.6;}
+.contact-item .ct-text strong{display:block; color:var(--navy-900); font-size:.75rem; text-transform:uppercase; letter-spacing:.06em; margin-bottom:4px;}
+.social-row{display:flex; gap:10px; align-items:center;}
+.social-circle{
+  width:38px; height:38px;
+  border-radius:50%;
+  background:var(--white);
+  border:1px solid var(--gray-300);
+  display:flex; align-items:center; justify-content:center;
+  color:var(--navy-800);
+  transition:all .2s ease;
+}
+.social-circle svg{width:16px; height:16px;}
+.social-circle:hover{background:var(--teal-500); color:var(--white); border-color:var(--teal-500); transform:translateY(-3px);}
+
+/* band 3 links */
+.links-band{
+  display:grid;
+  grid-template-columns:auto repeat(3,1fr);
+  gap:36px;
+}
+.telegram-pill{
+  align-self:start;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  border:1.5px solid var(--teal-500);
+  color:var(--teal-600);
+  font-weight:700;
+  font-size:.88rem;
+  padding:13px 22px;
+  border-radius:999px;
+  white-space:nowrap;
+  transition:all .2s ease;
+}
+.telegram-pill svg{width:17px; height:17px;}
+.telegram-pill:hover{background:var(--teal-500); color:var(--white);}
+.link-col h5{
+  font-size:.72rem;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--gray-500);
+  margin-bottom:16px;
+  font-weight:700;
+}
+.link-col a{
+  display:block;
+  font-weight:700;
+  font-size:.92rem;
+  color:var(--navy-800);
+  margin-bottom:13px;
+  transition:color .2s ease, transform .2s ease;
+}
+.link-col a:hover{color:var(--teal-600); transform:translateX(3px); display:inline-block;}
+
+/* band 4 trust/payment */
+.trust-band{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:24px;
+}
+.badges-row, .payments-row{display:flex; align-items:center; gap:14px; flex-wrap:wrap;}
+.badge-chip, .pay-chip{
+  height:36px;
+  padding:0 14px;
+  border-radius:8px;
+  background:var(--white);
+  border:1px solid var(--gray-300);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:.68rem;
+  font-weight:800;
+  color:var(--gray-500);
+  letter-spacing:.03em;
+}
+.payments-label{font-size:.8rem; font-weight:700; color:var(--navy-800); margin-right:6px;}
+
+/* band 5 note */
+.band-note{padding:30px 0; border-bottom:none;}
+.band-note p{font-size:.76rem; color:var(--gray-500); line-height:1.7; max-width:1100px;}
+
+/* band 6 bottom bar */
+.bottom-bar{
+  position:relative;
+  background:var(--navy-900);
+  padding:26px 0;
+}
+.bottom-bar::before{
+  content:'';
+  position:absolute;
+  top:-1px; left:50%;
+  transform:translateX(-50%);
+  width:110px; height:34px;
+  background:radial-gradient(circle at 50% 0%, transparent 30px, var(--navy-900) 31px);
+  background-color:transparent;
+}
+.bottom-bar-inner{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+}
+.bottom-bar p{
+  color:rgba(255,255,255,0.7);
+  font-size:.82rem;
+}
+
+/* ============================= FLOATING BUTTONS ============================= */
+.fab-stack{
+  position:fixed;
+  bottom:26px; right:26px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  z-index:900;
+}
+.fab{
+  width:54px; height:54px;
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:var(--shadow-md);
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.fab:hover{transform:translateY(-4px) scale(1.05); box-shadow:var(--shadow-lg);}
+.fab-chat{background:var(--navy-900); color:var(--white);}
+.fab-top{background:var(--teal-500); color:var(--white); opacity:0; pointer-events:none; transform:translateY(10px);}
+.fab-top.show{opacity:1; pointer-events:auto; transform:translateY(0);}
+.fab svg{width:22px; height:22px;}
+
+/* ============================= RESPONSIVE ============================= */
+@media (max-width:1024px){
+  .articles-grid{grid-template-columns:repeat(2,1fr);}
+  .gallery-grid{grid-template-columns:repeat(3,1fr);}
+  .contact-strip{grid-template-columns:repeat(2,1fr);}
+  .links-band{grid-template-columns:repeat(2,1fr);}
+  .telegram-pill{grid-column:1/-1; justify-self:start;}
+  .modal-box{grid-template-columns:1fr;}
+  .modal-illustration{display:none;}
+}
+
+@media (max-width:760px){
+  .nav-links{
+    position:fixed;
+    top:76px; left:0; right:0;
+    background:var(--navy-900);
+    flex-direction:column;
+    align-items:flex-start;
+    gap:0;
+    padding:10px 20px 26px;
+    transform:translateY(-120%);
+    opacity:0;
+    transition:transform .3s ease, opacity .3s ease;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .nav-links.open{transform:translateY(0); opacity:1;}
+  .nav-links a:not(.call-btn){padding:12px 0; width:100%; border-bottom:1px solid rgba(255,255,255,0.06);}
+  .call-btn{margin-top:14px;}
+  .nav-toggle{display:flex;}
+
+  .articles-grid{grid-template-columns:1fr;}
+  .gallery-grid{grid-template-columns:repeat(2,1fr); grid-auto-rows:120px;}
+  .contact-strip{grid-template-columns:1fr;}
+  .links-band{grid-template-columns:1fr;}
+  .trust-band{flex-direction:column; align-items:flex-start;}
+  section{padding:64px 0;}
+  .bottom-bar-inner{justify-content:center; text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================= NAVBAR ============================= -->
+<header class="navbar">
+  <div class="container nav-inner">
+    <a href="#top" class="brand">
+      <div class="logo-slot">LOGO</div>
+      <span class="brand-word">Wavering <span>Soul</span></span>
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#destinations">Destinations</a>
+      <a href="#articles">Articles</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#" class="call-btn" id="openModalBtn">
+        <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.2c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8z" stroke="white" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        Call Us!
+      </a>
+    </nav>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ============================= CALL US MODAL ============================= -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+
+    <div class="modal-content">
+      <span class="section-eyebrow">Get in touch</span>
+      <h3>We'd love to hear from you!</h3>
+      <p class="modal-sub">Our travel experts are on call to help you plan every last detail.</p>
+
+      <div class="modal-primary-numbers">
+        <div class="modal-phone-icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.2c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8z" stroke="white" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="nums">
+          <a href="tel:+911244567890">+91 124 456 7890</a>
+          <a href="tel:+911244567891">+91 124 456 7891</a>
+        </div>
+      </div>
+
+      <div class="dept-list">
+        <div class="dept-row"><span class="label">Air Ticketing</span><span class="num">+91 124 100 1001</span></div>
+        <div class="dept-row"><span class="label">Visa</span><span class="num">+91 124 100 1002</span></div>
+        <div class="dept-row"><span class="label">Foreign Exchange</span><span class="num">+91 124 100 1003</span></div>
+        <div class="dept-row"><span class="label">Cruise</span><span class="num">+91 124 100 1004</span></div>
+        <div class="dept-row"><span class="label">B2B</span><span class="num">+91 124 100 1005</span></div>
+        <div class="dept-row"><span class="label">Grievance Cell</span><span class="num">+91 124 100 1006</span></div>
+      </div>
+    </div>
+
+    <div class="modal-illustration">
+      <svg viewBox="0 0 320 340" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="160" cy="120" r="150" fill="rgba(255,255,255,0.06)"/>
+        <ellipse cx="160" cy="330" rx="120" ry="14" fill="rgba(0,0,0,0.15)"/>
+        <rect x="95" y="150" width="130" height="150" rx="30" fill="#e4f7f4"/>
+        <circle cx="160" cy="105" r="55" fill="#ffd9b8"/>
+        <path d="M108 95c0-35 24-58 52-58s52 23 52 58" fill="#123545"/>
+        <circle cx="140" cy="108" r="6" fill="#123545"/>
+        <circle cx="182" cy="108" r="6" fill="#123545"/>
+        <path d="M138 128c8 8 34 8 42 0" stroke="#123545" stroke-width="4" stroke-linecap="round" fill="none"/>
+        <rect x="130" y="180" width="60" height="45" rx="10" fill="#17b8a6"/>
+        <circle cx="248" cy="180" r="28" fill="#4fd6c4"/>
+        <path d="M238 180l7 7 15-15" stroke="#0b2735" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= HERO ============================= -->
+<section class="hero" id="top">
+  <div class="hero-content">
+    <span class="section-eyebrow">Journeys with a heartbeat</span>
+    <h1>Wander far. Return with a <em>wavering soul</em>.</h1>
+    <p>Hand-picked destinations, honest itineraries, and a team that answers the phone. Let's plan your next escape.</p>
+    <a href="#destinations" class="btn btn-teal">Search Destinations 🔍</a>
+  </div>
+  <svg class="hero-wave" viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 40C240 10 480 70 720 40C960 10 1200 70 1440 40V80H0V40Z" fill="currentColor"/>
+  </svg>
+</section>
+
+<!-- ============================= DESTINATIONS ============================= -->
+<section id="destinations">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21c-4-4-7-7.5-7-11a7 7 0 0114 0c0 3.5-3 7-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        Where to next
+      </span>
+      <h2>Popular Destinations</h2>
+      <p>From misty mountains to sun-warmed coastlines — find the trip that fits your mood.</p>
+    </div>
+
+    <div class="search-bar">
+      <input type="text" placeholder="Search a country, city, or vibe...">
+      <button aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg></button>
+    </div>
+
+    <div class="dest-wrap">
+      <div class="dest-track" id="destTrack">
+        <div class="dest-card">
+          <img src="https://images.unsplash.com/photo-1512100356356-de1b84283e18?q=80&w=800&auto=format&fit=crop" alt="Bali">
+          <div class="dest-card-body">
+            <span class="tag">Indonesia</span>
+            <h3>Bali</h3>
+            <p>Rice terraces, cliffside temples, and slow mornings by the sea.</p>
+          </div>
+        </div>
+        <div class="dest-card">
+          <img src="https://images.unsplash.com/photo-1503917988258-f87a78e3c995?q=80&w=800&auto=format&fit=crop" alt="Swiss Alps">
+          <div class="dest-card-body">
+            <span class="tag">Switzerland</span>
+            <h3>Swiss Alps</h3>
+            <p>Alpine trains, glacier lakes, and villages frozen in postcard time.</p>
+          </div>
+        </div>
+        <div class="dest-card">
+          <img src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?q=80&w=800&auto=format&fit=crop" alt="Santorini">
+          <div class="dest-card-body">
+            <span class="tag">Greece</span>
+            <h3>Santorini</h3>
+            <p>Whitewashed cliffs and sunsets that stop conversations mid-sentence.</p>
+          </div>
+        </div>
+        <div class="dest-card">
+          <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?q=80&w=800&auto=format&fit=crop" alt="Kyoto">
+          <div class="dest-card-body">
+            <span class="tag">Japan</span>
+            <h3>Kyoto</h3>
+            <p>Bamboo groves, quiet shrines, and tea houses tucked down alleyways.</p>
+          </div>
+        </div>
+        <div class="dest-card">
+          <img src="https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?q=80&w=800&auto=format&fit=crop" alt="Petra">
+          <div class="dest-card-body">
+            <span class="tag">Jordan</span>
+            <h3>Petra</h3>
+            <p>A rose-red city carved into canyon walls, best seen at dawn.</p>
+          </div>
+        </div>
+        <div class="dest-card">
+          <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?q=80&w=800&auto=format&fit=crop" alt="Maldives">
+          <div class="dest-card-body">
+            <span class="tag">Maldives</span>
+            <h3>Maldives</h3>
+            <p>Overwater villas and reefs so close you can snorkel from your porch.</p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-arrows">
+        <button class="arrow-btn" id="destPrev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button class="arrow-btn" id="destNext" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= GALLERY ============================= -->
+<section class="gallery-section" id="gallery">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
+        Moments captured
+      </span>
+      <h2>Travel Gallery</h2>
+      <p>Snapshots sent home by wanderers who trusted us with the map.</p>
+    </div>
+
+    <div class="gallery-grid">
+      <a href="#" class="g-tall"><img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=600&auto=format&fit=crop" alt="Gallery 1"></a>
+      <a href="#"><img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=600&auto=format&fit=crop" alt="Gallery 2"></a>
+      <a href="#"><img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=600&auto=format&fit=crop" alt="Gallery 3"></a>
+      <a href="#" class="g-tall"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=600&auto=format&fit=crop" alt="Gallery 4"></a>
+      <a href="#"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=600&auto=format&fit=crop" alt="Gallery 5"></a>
+      <a href="#"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=600&auto=format&fit=crop" alt="Gallery 6"></a>
+      <a href="#"><img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=600&auto=format&fit=crop" alt="Gallery 7"></a>
+      <a href="#"><img src="https://images.unsplash.com/photo-1493558103817-58b2924bce98?q=80&w=600&auto=format&fit=crop" alt="Gallery 8"></a>
+    </div>
+    <div class="view-more-row">
+      <a href="#" class="view-more-link">View More
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= ARTICLES ============================= -->
+<section id="articles">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+        From the journal
+      </span>
+      <h2>Latest Articles</h2>
+      <p>Field notes, packing lists, and honest guides from our travel desk.</p>
+    </div>
+
+    <div class="articles-grid">
+      <div class="article-card">
+        <div class="article-thumb">
+          <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=700&auto=format&fit=crop" alt="Article 1">
+          <span class="date-tag">Jun 14, 2026</span>
+        </div>
+        <div class="article-body">
+          <h3>7 Coastal Towns That Feel Like a Secret</h3>
+          <p>Skip the crowds — these shoreline towns still move at their own slow pace.</p>
+          <a href="#" class="read-link">Read Article →</a>
+        </div>
+      </div>
+      <div class="article-card">
+        <div class="article-thumb">
+          <img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=700&auto=format&fit=crop" alt="Article 2">
+          <span class="date-tag">Jun 02, 2026</span>
+        </div>
+        <div class="article-body">
+          <h3>A Beginner's Guide to Slow Travel</h3>
+          <p>Why fewer stops and longer stays might be the upgrade your next trip needs.</p>
+          <a href="#" class="read-link">Read Article →</a>
+        </div>
+      </div>
+      <div class="article-card">
+        <div class="article-thumb">
+          <img src="https://images.unsplash.com/photo-1488085061387-422e29b40080?q=80&w=700&auto=format&fit=crop" alt="Article 3">
+          <span class="date-tag">May 21, 2026</span>
+        </div>
+        <div class="article-body">
+          <h3>Packing Light: The Only Checklist You Need</h3>
+          <p>One bag, ten days, zero regrets — our field-tested packing philosophy.</p>
+          <a href="#" class="read-link">Read Article →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="view-more-row">
+      <a href="#" class="view-more-link">View More Articles
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= FOOTER ============================= -->
+<footer class="footer">
+
+  <div class="container footer-brand-row">
+    <div class="footer-logo-wrap">
+      <div class="logo-slot">LOGO</div>
+      <span class="brand-word">Wavering <span style="color:var(--teal-600); font-style:italic;">Soul</span></span>
+      <span class="dev-by">Developed by Team Horizon</span>
+    </div>
+  </div>
+
+  <!-- Band 1: About -->
+  <div class="footer-band">
+    <div class="container band-about">
+      <h4 class="section-eyebrow-label">About Wavering Soul</h4>
+      <p>We're a small team of travel planners who believe the best trips are built on real advice, not templates. Since day one, we've paired honest itineraries with a support desk that actually picks up the phone. <strong>Read More</strong></p>
+    </div>
+  </div>
+
+  <!-- Band 2: Contact strip -->
+  <div class="footer-band">
+    <div class="container contact-strip">
+      <div class="contact-item">
+        <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21c-4-4-7-7.5-7-11a7 7 0 0114 0c0 3.5-3 7-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+        <div class="ct-text"><strong>Address</strong>4th Floor, Horizon Tower<br>Cyber Hub, Gurugram, India</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.2c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+        <div class="ct-text"><strong>Call Us</strong>+91 124 456 7890<br>+91 124 456 7891</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
+        <div class="ct-text"><strong>Email</strong>hello@waveringsoul.com</div>
+      </div>
+      <div class="contact-item" style="align-items:center;">
+        <div class="social-row">
+          <a href="#" class="social-circle" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.2h-3.1V7.7c0-.9.3-1.6 1.7-1.6h1.6V3.2C16.3 3.1 15.2 3 14 3c-2.6 0-4.4 1.6-4.4 4.5v2.3H7v3.2h2.6V21h3.9z"/></svg></a>
+          <a href="#" class="social-circle" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="#" class="social-circle" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 5.9c-.7.3-1.5.6-2.3.7.8-.5 1.4-1.3 1.7-2.3-.8.5-1.7.8-2.6 1a4.1 4.1 0 00-7 3.7 11.6 11.6 0 01-8.5-4.3 4.1 4.1 0 001.3 5.5c-.7 0-1.3-.2-1.9-.5v.1c0 2 1.4 3.6 3.3 4a4 4 0 01-1.9.1 4.1 4.1 0 003.9 2.9A8.3 8.3 0 012 19.5a11.6 11.6 0 006.3 1.9c7.5 0 11.7-6.3 11.7-11.7v-.5c.8-.6 1.5-1.3 2-2.3z"/></svg></a>
+          <a href="#" class="social-circle" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12s0-3.2-.4-4.6a2.9 2.9 0 00-2-2C17.9 5 12 5 12 5s-5.9 0-7.6.4a2.9 2.9 0 00-2 2C2 8.8 2 12 2 12s0 3.2.4 4.6a2.9 2.9 0 002 2C6.1 19 12 19 12 19s5.9 0 7.6-.4a2.9 2.9 0 002-2C22 15.2 22 12 22 12z" opacity=".0"/><path d="M10 15.5v-7L16 12l-6 3.5z"/><path d="M22 12s0-3.2-.4-4.6a2.9 2.9 0 00-2-2C17.9 5 12 5 12 5s-5.9 0-7.6.4a2.9 2.9 0 00-2 2C2 8.8 2 12 2 12s0 3.2.4 4.6a2.9 2.9 0 002 2C6.1 19 12 19 12 19s5.9 0 7.6-.4a2.9 2.9 0 002-2C22 15.2 22 12 22 12z" fill="none" stroke="currentColor" stroke-width="0"/></svg></a>
+          <a href="#" class="social-circle" aria-label="RSS"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"/><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Band 3: Link columns -->
+  <div class="footer-band">
+    <div class="container links-band">
+      <a href="#" class="telegram-pill">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 3.7L2.9 11c-1.2.5-1.2 1.2-.2 1.5l4.8 1.5 1.9 5.7c.2.6.4.8.8.8.4 0 .6-.2.8-.5l2-2 4.2 3c.8.4 1.3.2 1.5-.7l2.8-13.5c.3-1.1-.4-1.6-1.6-1.1zM8.6 13.6l9.4-6c.4-.3.8-.1.5.3l-8 7.4-.3 3.1-1.4-4.5z"/></svg>
+        Connect with us on Telegram
+      </a>
+
+      <div class="link-col">
+        <h5>Company</h5>
+        <a href="#">About us</a>
+        <a href="#">Offers</a>
+        <a href="#">Write a Review</a>
+        <a href="#">Picture Credits</a>
+        <a href="#">Affiliates Network</a>
+        <a href="#">Corporate Travel</a>
+      </div>
+      <div class="link-col">
+        <h5>Support</h5>
+        <a href="#">Enquiry</a>
+        <a href="#">Contact Us</a>
+        <a href="#">Traveller Reviews</a>
+        <a href="#">Feedback</a>
+        <a href="#">Customer Support</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+      <div class="link-col">
+        <h5>Legal &amp; Booking</h5>
+        <a href="#">Make Payment</a>
+        <a href="#">Terms &amp; Conditions</a>
+        <a href="#">Important Announcement</a>
+        <a href="#">Bank Account Details</a>
+        <a href="#">Press Release</a>
+        <a href="#">Visa Documents Required</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Band 4: Trust & payment -->
+  <div class="footer-band">
+    <div class="container trust-band">
+      <div class="badges-row">
+        <div class="badge-chip">IATA</div>
+        <div class="badge-chip">TAAI</div>
+        <div class="badge-chip">TAFI</div>
+        <div class="badge-chip">MOT · Govt</div>
+        <div class="badge-chip">ISO 9001</div>
+      </div>
+      <div class="payments-row">
+        <span class="payments-label">Payment Options: We accept here</span>
+        <div class="pay-chip">VISA</div>
+        <div class="pay-chip">Mastercard</div>
+        <div class="pay-chip">RuPay</div>
+        <div class="pay-chip">Amex</div>
+        <div class="pay-chip">Paytm</div>
+        <div class="pay-chip">G Pay</div>
+        <div class="pay-chip">Net Banking</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Band 5: Note -->
+  <div class="container band-note">
+    <p>All bookings made through Wavering Soul are subject to the terms and jurisdiction of courts in Gurugram, India, only. Images used across this website are for representational purposes only and may not reflect the exact property, service, or destination booked. Prices, availability, and itineraries are subject to change without prior notice.</p>
+  </div>
+
+  <!-- Band 6: bottom bar -->
+  <div class="bottom-bar">
+    <div class="container bottom-bar-inner">
+      <p>Copyright © 2026 Wavering Soul. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================= FLOATING BUTTONS ============================= -->
+<div class="fab-stack">
+  <a href="#" class="fab fab-chat" aria-label="Chat with us">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.4 8.4 0 01-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.4 8.4 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+  </a>
+  <button class="fab fab-top" id="fabTop" aria-label="Scroll to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+</div>
+
+<script>
+// ---- mobile nav toggle ----
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+// ---- modal ----
+const modalOverlay = document.getElementById('modalOverlay');
+const openModalBtn = document.getElementById('openModalBtn');
+const modalClose = document.getElementById('modalClose');
+
+function openModal(e){ e.preventDefault(); modalOverlay.classList.add('active'); document.body.style.overflow='hidden'; }
+function closeModal(){ modalOverlay.classList.remove('active'); document.body.style.overflow=''; }
+
+openModalBtn.addEventListener('click', openModal);
+modalClose.addEventListener('click', closeModal);
+modalOverlay.addEventListener('click', (e) => { if(e.target === modalOverlay) closeModal(); });
+document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeModal(); });
+
+// ---- destinations carousel ----
+const destTrack = document.getElementById('destTrack');
+const destPrev = document.getElementById('destPrev');
+const destNext = document.getElementById('destNext');
+const scrollAmount = 304;
+destPrev.addEventListener('click', () => destTrack.scrollBy({left:-scrollAmount, behavior:'smooth'}));
+destNext.addEventListener('click', () => destTrack.scrollBy({left:scrollAmount, behavior:'smooth'}));
+
+// ---- scroll to top fab ----
+const fabTop = document.getElementById('fabTop');
+window.addEventListener('scroll', () => {
+  if(window.scrollY > 500){ fabTop.classList.add('show'); } else { fabTop.classList.remove('show'); }
+});
+fabTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+</script>
+</body>
+</html>
